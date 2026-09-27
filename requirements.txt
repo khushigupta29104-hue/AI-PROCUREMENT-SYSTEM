@@ -1,0 +1,42 @@
+# --- Frontend ---
+streamlit>=1.36.0
+plotly>=5.22.0
+
+# --- LangChain + Ollama (fully local, no API key) ---
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langchain-text-splitters>=0.2.0
+langchain-ollama>=0.1.0
+
+# --- Local embeddings (no API key needed - runs on CPU) ---
+langchain-huggingface>=0.0.3
+sentence-transformers>=3.0.0
+
+# --- Vector Database ---
+chromadb>=0.5.0
+
+# --- Document Parsing ---
+PyMuPDF>=1.24.0          # PDF reading (fitz)
+python-docx>=1.1.0        # DOCX reading/writing
+
+# --- PDF Generation ---
+reportlab>=4.2.0
+
+# --- Data Processing ---
+pandas>=2.2.0
+
+# --- Utilities ---
+python-dotenv>=1.0.0
+pydantic>=2.7.0
+tqdm>=4.66.0
+
+# --- Testing ---
+pytest>=8.2.0
+
+# NOTE: No OCR libraries are included by design (no EasyOCR, no Tesseract),
+# per project requirement -- all supported documents must have a native text layer.
+# NOTE: sentence-transformers pulls in PyTorch (CPU build) as a dependency for
+# local embeddings -- this is a larger download (~1-2 GB) but requires no API key.
+# NOTE: Ollama itself is a separate application, not a Python package -- install it
+# from https://ollama.com/download and pull the model with `ollama pull llama3.1:8b`.

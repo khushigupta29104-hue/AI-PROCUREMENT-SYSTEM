@@ -1,0 +1,2 @@
+# ChromaDB persistent storage. Safe to clear to force a full rebuild
+# via Knowledge Base -> Maintenance -> "Rebuild ChromaDB".

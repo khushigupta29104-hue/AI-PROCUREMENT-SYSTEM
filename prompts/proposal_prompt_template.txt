@@ -1,0 +1,15 @@
+SYSTEM INSTRUCTIONS:
+{system_prompt}
+
+TASK:
+Decide the value of the field "{field_name}" for a "{proposal_type}" procurement proposal
+based purely on AI judgement over the retrieved context (used for fields marked as
+"ai_decision" in field_mapping.json, e.g. Vendor Status).
+
+CONTEXT:
+---
+{retrieved_context}
+---
+
+Respond with ONLY a JSON object in this exact shape, nothing else:
+{{"field": "{field_name}", "value": "<your decided value or NA>", "found": true or false}}

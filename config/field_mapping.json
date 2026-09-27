@@ -1,0 +1,91 @@
+{
+  "_comment": "Exact field -> source mapping per proposal type, confirmed against the uploaded *_Field_Mapping_Filled.pdf sample-value files. If a value cannot be found in its source, the field is filled with 'NA' and surfaced under 'missing_fields' for the user to complete manually in the editable preview.",
+
+  "source_types": {
+    "user_input": "Value typed directly by the user on the Proposal Generator page.",
+    "spr": "Retrieved from documents in knowledge_base/spr/.",
+    "registration": "Retrieved from documents in knowledge_base/registration/.",
+    "purchase_order": "Retrieved from documents in knowledge_base/purchase_order/.",
+    "tender": "Retrieved from documents in knowledge_base/tender/.",
+    "vendor": "Retrieved from documents in knowledge_base/vendor/ (vendor-submitted Proposal/Quotation/Technical documents).",
+    "ai_decision": "The LLM (local Ollama model) decides this value based on retrieved context, not copied verbatim from one document.",
+    "manual_user": "Always left as NA for the human user to fill in manually - never auto-filled by the AI."
+  },
+
+  "proposal_types": {
+    "honeywell": {
+      "display_name": "Honeywell",
+      "fields": [
+        {"field_name": "Proposal Reference",  "placeholder_token": "{{proposal_reference}}",  "source": "user_input"},
+        {"field_name": "Tender Number",        "placeholder_token": "{{tender_number}}",        "source": "tender"},
+        {"field_name": "Tender Name",          "placeholder_token": "{{tender_name}}",          "source": "tender"},
+        {"field_name": "SPR Number",           "placeholder_token": "{{spr_number}}",           "source": "spr"},
+        {"field_name": "Registration Number",  "placeholder_token": "{{registration_number}}",  "source": "registration"},
+        {"field_name": "PO Number",            "placeholder_token": "{{po_number}}",            "source": "purchase_order"},
+        {"field_name": "Customer Name",        "placeholder_token": "{{customer_name}}",        "source": "tender"},
+        {"field_name": "Delivery Schedule",    "placeholder_token": "{{delivery_schedule}}",    "source": "purchase_order"},
+        {"field_name": "Warranty",             "placeholder_token": "{{warranty}}",              "source": "vendor"},
+        {"field_name": "Commercial Value",     "placeholder_token": "{{commercial_value}}",      "source": "vendor"},
+        {"field_name": "Signature",            "placeholder_token": "{{signature}}",             "source": "manual_user"}
+      ]
+    },
+    "dassault": {
+      "display_name": "Dassault",
+      "fields": [
+        {"field_name": "Bid ID",                 "placeholder_token": "{{bid_id}}",                 "source": "tender"},
+        {"field_name": "Customer Organisation",  "placeholder_token": "{{customer_organisation}}",  "source": "tender"},
+        {"field_name": "Software/Product",       "placeholder_token": "{{software_product}}",       "source": "vendor"},
+        {"field_name": "Licence Type",           "placeholder_token": "{{licence_type}}",           "source": "vendor"},
+        {"field_name": "Subscription Period",    "placeholder_token": "{{subscription_period}}",    "source": "vendor"},
+        {"field_name": "Support Level",          "placeholder_token": "{{support_level}}",          "source": "vendor"},
+        {"field_name": "SPR Number",              "placeholder_token": "{{spr_number}}",             "source": "spr"},
+        {"field_name": "PO Number",               "placeholder_token": "{{po_number}}",              "source": "purchase_order"},
+        {"field_name": "Commercial Terms",        "placeholder_token": "{{commercial_terms}}",       "source": "purchase_order"},
+        {"field_name": "Authorised Signatory",    "placeholder_token": "{{authorised_signatory}}",   "source": "manual_user"}
+      ]
+    },
+    "common_vendor": {
+      "display_name": "Common Vendor",
+      "fields": [
+        {"field_name": "Vendor Name",      "placeholder_token": "{{vendor_name}}",      "source": "registration"},
+        {"field_name": "Vendor ID",        "placeholder_token": "{{vendor_id}}",        "source": "registration"},
+        {"field_name": "GST",              "placeholder_token": "{{gst}}",              "source": "registration"},
+        {"field_name": "PAN",              "placeholder_token": "{{pan}}",              "source": "registration"},
+        {"field_name": "Bank Details",     "placeholder_token": "{{bank_details}}",     "source": "registration"},
+        {"field_name": "PO Reference",     "placeholder_token": "{{po_reference}}",     "source": "purchase_order"},
+        {"field_name": "Contact Person",   "placeholder_token": "{{contact_person}}",   "source": "registration"},
+        {"field_name": "Vendor Status",    "placeholder_token": "{{vendor_status}}",    "source": "ai_decision"},
+        {"field_name": "Approval",         "placeholder_token": "{{approval}}",         "source": "manual_user"}
+      ]
+    },
+    "foreign_vendor": {
+      "display_name": "Foreign Vendor",
+      "fields": [
+        {"field_name": "Vendor Name",         "placeholder_token": "{{vendor_name}}",         "source": "registration"},
+        {"field_name": "Country",             "placeholder_token": "{{country}}",             "source": "registration"},
+        {"field_name": "Tax ID",              "placeholder_token": "{{tax_id}}",              "source": "registration"},
+        {"field_name": "Currency",            "placeholder_token": "{{currency}}",            "source": "vendor"},
+        {"field_name": "Incoterms",           "placeholder_token": "{{incoterms}}",           "source": "purchase_order"},
+        {"field_name": "SWIFT Code",          "placeholder_token": "{{swift_code}}",          "source": "registration"},
+        {"field_name": "Delivery Port",       "placeholder_token": "{{delivery_port}}",       "source": "purchase_order"},
+        {"field_name": "Shipping Terms",      "placeholder_token": "{{shipping_terms}}",      "source": "vendor"},
+        {"field_name": "Import Compliance",   "placeholder_token": "{{import_compliance}}",   "source": "tender"},
+        {"field_name": "Approval",            "placeholder_token": "{{approval}}",            "source": "manual_user"}
+      ]
+    },
+    "general_notice": {
+      "display_name": "General Notice",
+      "fields": [
+        {"field_name": "Notice Number",        "placeholder_token": "{{notice_number}}",        "source": "user_input"},
+        {"field_name": "Issue Date",           "placeholder_token": "{{issue_date}}",           "source": "user_input"},
+        {"field_name": "Department",           "placeholder_token": "{{department}}",           "source": "tender"},
+        {"field_name": "Subject",              "placeholder_token": "{{subject}}",              "source": "tender"},
+        {"field_name": "Reference Document",   "placeholder_token": "{{reference_document}}",   "source": "vendor"},
+        {"field_name": "Applicable Project",   "placeholder_token": "{{applicable_project}}",   "source": "tender"},
+        {"field_name": "Effective Date",       "placeholder_token": "{{effective_date}}",       "source": "user_input"},
+        {"field_name": "Issued By",            "placeholder_token": "{{issued_by}}",            "source": "manual_user"}
+      ]
+    }
+  },
+  "extensibility_note": "To add a new proposal type: add a new key under 'proposal_types' with its 'fields' list, add a matching template docx under templates/<new_type>/, and add an entry in proposal_config.json. No Python code changes required."
+}

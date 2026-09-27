@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Environment (NEVER commit your real API key)
+.env
+
+# Runtime data
+uploads/*
+!uploads/.gitkeep
+knowledge_base/**/*
+!knowledge_base/**/.gitkeep
+vector_db/*
+!vector_db/.gitkeep
+generated_proposals/docx/*
+!generated_proposals/docx/.gitkeep
+generated_proposals/pdf/*
+!generated_proposals/pdf/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

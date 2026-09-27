@@ -1,0 +1,78 @@
+{
+  "app": {
+    "name": "AI Procurement Proposal Generation System",
+    "short_name": "ProcureAI",
+    "version": "2.0.0",
+    "environment": "development"
+  },
+  "ollama": {
+    "host": "http://localhost:11434",
+    "llm_model": "llama3.1:8b",
+    "temperature": 0.1,
+    "max_output_tokens": 1024,
+    "request_timeout_seconds": 120
+  },
+  "embeddings": {
+    "provider": "huggingface_local",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "note": "Runs fully locally on CPU - no API key, no quota, no internet needed after the first download of the model weights."
+  },
+  "vector_db": {
+    "provider": "chromadb",
+    "persist_directory": "vector_db",
+    "collection_name": "procurement_kb",
+    "distance_metric": "cosine"
+  },
+  "chunking": {
+    "chunk_size": 1000,
+    "chunk_overlap": 150
+  },
+  "retrieval": {
+    "top_k": 4,
+    "similarity_score_threshold": 0.0
+  },
+  "file_upload": {
+    "allowed_extensions": [".pdf", ".docx"],
+    "max_file_size_mb": 25,
+    "max_files_per_upload": 100,
+    "upload_dir": "uploads",
+    "knowledge_base_dir": "knowledge_base"
+  },
+  "knowledge_base_categories": [
+    "spr",
+    "registration",
+    "purchase_order",
+    "tender",
+    "vendor"
+  ],
+  "knowledge_base_category_labels": {
+    "spr": "SPR",
+    "registration": "Registration",
+    "purchase_order": "Purchase Order",
+    "tender": "Tender",
+    "vendor": "Vendor"
+  },
+  "knowledge_base_category_icons": {
+    "spr": "\ud83d\udccb",
+    "registration": "\ud83c\udfe2",
+    "purchase_order": "\ud83e\uddfe",
+    "tender": "\ud83d\udcc4",
+    "vendor": "\ud83e\udd1d"
+  },
+  "proposal_output": {
+    "docx_output_dir": "generated_proposals/docx",
+    "pdf_output_dir": "generated_proposals/pdf"
+  },
+  "logging": {
+    "log_dir": "logs",
+    "log_file": "app.log",
+    "level": "INFO",
+    "max_bytes": 5242880,
+    "backup_count": 5
+  },
+  "ocr": {
+    "enabled": false,
+    "note": "OCR is intentionally disabled per project requirements."
+  },
+  "not_found_value": "NA"
+}

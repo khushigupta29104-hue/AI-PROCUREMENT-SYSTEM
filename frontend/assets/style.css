@@ -1,0 +1,284 @@
+/*
+  style.css
+  =========
+  Dedicated stylesheet for the AI Procurement Proposal Generation
+  System. Injected into every Streamlit page via
+  frontend/components/theme.py::inject_custom_css(), which wraps this
+  file's contents in a <style> tag using st.markdown(unsafe_allow_html=True).
+
+  Design language: enterprise SaaS - deep indigo/violet gradient accents,
+  glassmorphism cards, soft shadows, rounded corners, subtle motion.
+  All colors, spacing, and typography for the app are centralized here.
+*/
+
+:root {
+  --primary: #4F46E5;
+  --primary-light: #818CF8;
+  --primary-dark: #3730A3;
+  --secondary: #06B6D4;
+  --accent: #F59E0B;
+  --success: #10B981;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+  --bg-glass: rgba(255, 255, 255, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.35);
+  --text-dark: #1E1B4B;
+  --text-muted: #6B7280;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-soft: 0 8px 30px rgba(79, 70, 229, 0.10);
+  --shadow-hover: 0 14px 40px rgba(79, 70, 229, 0.20);
+}
+
+/* ---------------- Global App Background ---------------- */
+.stApp {
+  background: linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 35%, #ECFEFF 100%);
+  font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-dark) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
+
+p, span, label, .stMarkdown {
+  color: var(--text-dark);
+}
+
+/* ---------------- Sidebar ---------------- */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #312E81 0%, #4F46E5 55%, #4338CA 100%);
+  border-right: none;
+}
+
+section[data-testid="stSidebar"] * {
+  color: #EEF2FF !important;
+}
+
+section[data-testid="stSidebar"] .stButton>button {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff !important;
+  border-radius: var(--radius-md);
+  transition: all 0.25s ease;
+}
+section[data-testid="stSidebar"] .stButton>button:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+
+/* Streamlit's auto page-nav links in the sidebar */
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a {
+  border-radius: var(--radius-md);
+  margin: 2px 8px;
+  padding: 8px 12px !important;
+  transition: all 0.2s ease;
+}
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(3px);
+}
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-current="page"] {
+  background: rgba(255,255,255,0.25) !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* ---------------- Glass Card ---------------- */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 16px;
+}
+.glass-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------------- Metric Cards (custom KPI tiles) ---------------- */
+.metric-tile {
+  background: linear-gradient(145deg, #ffffff 0%, #F5F3FF 100%);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid rgba(79,70,229,0.10);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.metric-tile::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+.metric-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.metric-tile .metric-icon { font-size: 28px; margin-bottom: 6px; }
+.metric-tile .metric-value { font-size: 30px; font-weight: 800; color: var(--text-dark); line-height: 1.1; }
+.metric-tile .metric-label { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
+
+/* ---------------- Status Badges ---------------- */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge-success { background: rgba(16,185,129,0.15); color: #047857; border: 1px solid rgba(16,185,129,0.30); }
+.badge-danger  { background: rgba(239,68,68,0.15); color: #B91C1C; border: 1px solid rgba(239,68,68,0.30); }
+.badge-warning { background: rgba(245,158,11,0.15); color: #B45309; border: 1px solid rgba(245,158,11,0.30); }
+.badge-info    { background: rgba(79,70,229,0.12); color: #4338CA; border: 1px solid rgba(79,70,229,0.28); }
+
+/* ---------------- Buttons ---------------- */
+.stButton>button, .stDownloadButton>button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff !important;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.55em 1.4em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 18px rgba(79,70,229,0.28);
+  transition: all 0.22s ease;
+}
+.stButton>button:hover, .stDownloadButton>button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 26px rgba(79,70,229,0.38);
+  filter: brightness(1.06);
+}
+.stButton>button:active, .stDownloadButton>button:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* ---------------- Progress Bar ---------------- */
+.stProgress > div > div > div > div {
+  background: linear-gradient(90deg, var(--secondary), var(--primary)) !important;
+  border-radius: 999px;
+}
+.stProgress > div > div {
+  border-radius: 999px;
+  background: rgba(79,70,229,0.08);
+}
+
+/* ---------------- Tables ---------------- */
+[data-testid="stDataFrame"] {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------------- Cards / Containers with border ---------------- */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------------- Tabs ---------------- */
+.stTabs [data-baseweb="tab-list"] {
+  gap: 6px;
+}
+.stTabs [data-baseweb="tab"] {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: rgba(79,70,229,0.06);
+  font-weight: 700;
+  padding: 10px 18px;
+}
+.stTabs [aria-selected="true"] {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* ---------------- Inputs ---------------- */
+.stTextInput>div>div>input, .stTextArea textarea, .stSelectbox>div>div {
+  border-radius: var(--radius-md) !important;
+  border: 1.5px solid rgba(79,70,229,0.18) !important;
+}
+.stTextInput>div>div>input:focus, .stTextArea textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.15) !important;
+}
+
+/* ---------------- Alerts (success/warning/error/info) ---------------- */
+div[data-testid="stAlert"] {
+  border-radius: var(--radius-md);
+  border-left: 5px solid var(--primary);
+}
+
+/* ---------------- Hero Header Banner ---------------- */
+.hero-banner {
+  background: linear-gradient(120deg, #4F46E5 0%, #6366F1 45%, #06B6D4 100%);
+  border-radius: var(--radius-lg);
+  padding: 34px 36px;
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(79,70,229,0.30);
+  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  width: 280px; height: 280px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 50%;
+  top: -120px; right: -80px;
+}
+.hero-banner h1 { color: #fff !important; margin: 0; font-size: 30px; }
+.hero-banner p { color: rgba(255,255,255,0.88); margin-top: 6px; font-size: 15px; }
+
+/* ---------------- Fade-in Animation ---------------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.glass-card, .metric-tile, .hero-banner {
+  animation: fadeInUp 0.45s ease;
+}
+
+/* ---------------- Pulsing live-status dot ---------------- */
+.status-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 0 rgba(16,185,129, 0.5);
+  animation: pulseDot 1.8s infinite;
+}
+.status-dot.online { background: var(--success); }
+.status-dot.offline { background: var(--danger); animation: none; }
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(16,185,129, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(16,185,129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16,185,129, 0); }
+}
+
+/* ---------------- Scrollbar ---------------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(79,70,229,0.35); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------------- Footer caption text ---------------- */
+.app-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  padding: 18px 0 6px 0;
+}

@@ -1,0 +1,17 @@
+SYSTEM INSTRUCTIONS:
+{system_prompt}
+
+TASK:
+Extract the value of a single field named "{field_name}" for a procurement proposal.
+Field description / guidance: {field_description}
+
+CONTEXT (retrieved from uploaded knowledge-base documents, category: {category}):
+---
+{retrieved_context}
+---
+
+INSTRUCTIONS:
+- If the value of "{field_name}" is clearly present in the CONTEXT above, extract it exactly.
+- If it is not present or you are not confident, set "found" to false and "value" to "NA".
+- Respond with ONLY a JSON object in this exact shape, nothing else:
+{{"field": "{field_name}", "value": "<extracted value or NA>", "found": true or false}}
